@@ -1,0 +1,4 @@
+export LANG=en_US.UTF-8
+export EDITOR=/usr/bin/vim
+[ -x "$(command -v starship)" ] &&  export STARSHIP_CONFIG=~/.config/starship/config.toml
+
