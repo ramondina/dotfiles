@@ -1,0 +1,12 @@
+alias ll='ls -la'
+
+# ansible
+alias ap=ansible-playbook
+alias aps='ansible-playbook --syntax-check'
+
+# kubernetes
+alias k=kubectl
+
+# terraform
+alias tf=terraform
+
