@@ -10,3 +10,5 @@ alias k=kubectl
 # terraform
 alias tf=terraform
 
+# neovim
+[ -x "$(command -v nvim)" ] && alias vim=nvim vi=nvim
