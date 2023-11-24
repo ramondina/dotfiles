@@ -9,7 +9,7 @@ fi
 
 # set an icon based on the distro
 case $_distro in
-    *kali*)                  ICON="ﴣ";;
+    *kali*)                  ICON="";;
     *arch*)                  ICON="";;
     *debian*)                ICON="";;
     *raspbian*)              ICON="";;
@@ -30,6 +30,7 @@ case $_distro in
     *devuan*)                ICON="";;
     *manjaro*)               ICON="";;
     *rhel*)                  ICON="";;
+    *ol*)		     ICON="";;
     *)                       ICON="";;
 esac
 
