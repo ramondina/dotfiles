@@ -20,9 +20,9 @@ disabled = false
 
 [os.symbols]
 Windows = ' '
-Arch = '󰣇'
-Ubuntu = ''
-Macos = '󰀵'
+Ubuntu = ' '
+Macos = '󰀵 '
+AlmaLinux = ' '
 
 # ---
 
