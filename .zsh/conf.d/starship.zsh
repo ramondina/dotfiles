@@ -1,9 +1,7 @@
-#-- find out which distribution we are running on
-LFILE="/etc/*-release"
-MFILE="/System/Library/CoreServices/SystemVersion.plist"
-if [[ -f $LFILE ]]; then
-  _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
-elif [[ -f $MFILE ]]; then
+if [[ -r /etc/os-release ]];; then
+    source /etc/os-release
+    _distro="$ID"
+elif [[ -r /System/Library/CoreServices/SystemVersion.plist ]];; then
   _distro="macos"
 
   #-- on mac os use the systemprofiler to determine the current model
