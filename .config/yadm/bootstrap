@@ -12,6 +12,13 @@ error() {
     echo "[ERROR] $*" >&2
 }
 
+#-- Because Git submodule commands cannot operate without a work tree, they must
+#-- be run from within $HOME (assuming this is the root of your dotfiles)
+cd "$HOME"
+
+echo "Init submodules"
+~/.local/bin/yadm submodule update --recursive --init
+
 case "$(uname -s)" in
     Darwin)
         source "$SCRIPT_DIR/bootstrap.d/macos.sh"
