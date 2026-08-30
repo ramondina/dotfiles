@@ -1,10 +1,10 @@
 #-- Environment
-source "$ZDOTDIR/exports.zsh"
+source "$ZDOTDIR/.zsh/exports.zsh"
 
 #-- Aliases
-source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/.zsh/aliases.zsh"
 
 #-- Additional configuration
-for file in "$ZDOTDIR/conf.d/"*.zsh; do
+for file in "$ZDOTDIR/.zsh/conf.d/"*.zsh; do
   [[ -r "$file" ]] && source "$file"
 done
