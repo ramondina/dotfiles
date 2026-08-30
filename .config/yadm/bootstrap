@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+info() {
+    echo "[INFO] $*"
+}
+
+error() {
+    echo "[ERROR] $*" >&2
+}
+
+case "$(uname -s)" in
+    Darwin)
+        source "$SCRIPT_DIR/bootstrap.d/macos.sh"
+        ;;
+
+    Linux)
+        source /etc/os-release
+
+        case "$ID" in
+            debian|ubuntu|linuxmint|pop)
+                source "$SCRIPT_DIR/bootstrap.d/linux/debian.sh"
+                ;;
+
+            rhel|fedora|centos|rocky|almalinux)
+                source "$SCRIPT_DIR/bootstrap.d/linux/redhat.sh"
+                ;;
+
+            *)
+                die "Unsupported Linux distribution: $ID"
+                ;;
+        esac
+
+        source "$SCRIPT_DIR/bootstrap.d/linux/common.sh"
+        ;;
+
+    *)
+        die "Unsupported operating system: $(uname -s)"
+        ;;
+esac
+
+info "Bootstrap complete."
