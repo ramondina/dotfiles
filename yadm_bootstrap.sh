@@ -1,15 +1,24 @@
 #!/bin/sh
 
+set -eu
+
+YADM="$HOME/.local/bin/yadm"
+
 echo "🚀 setting up dotfiles..."
 
-mkdir -p ~/.local/bin
+mkdir -p "$HOME/.local/bin"
 
-curl -sfLo ~/.local/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm
+if [ ! -x "$YADM" ]; then
+    echo "Installing yadm..."
+    
+    curl -sfLo \
+        ~/.local/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm \
+        -o "$YADM"
 
-chmod a+x ~/.local/bin/yadm
+    chmod 700 "$YADM"
+fi
 
-~/.local/bin/yadm clone --bootstrap -f https://github.com/ramondina/dotfiles.git
-
-rm -rf ~/.local/bin/yadm
+"$YADM" clone \
+    --bootstrap -f https://github.com/ramondina/dotfiles.git
 
 echo "👌 dotfiles setup done!"

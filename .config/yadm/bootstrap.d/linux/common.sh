@@ -8,6 +8,8 @@ info "Installing common tools..."
 if ! fc-list | grep -qi "Hack Nerd Font"; then
     font_dir="$HOME/.local/share/fonts/nerdfonts"
 
+    info "Installing hack nerd font..."
+
     mkdir -p "$font_dir"
 
     curl -L \
@@ -19,5 +21,6 @@ fi
 
 #-- Install Starship if it isn't already installed
 if ! command -v starship >/dev/null 2>&1; then
+    info "Installing starship..."
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi

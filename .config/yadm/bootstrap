@@ -5,27 +5,28 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 info() {
-    echo "[INFO] $*"
+    printf '[INFO] %s\n' "$*"
 }
 
 error() {
-    echo "[ERROR] $*" >&2
+    printf '[ERROR] %s\n' "$*" >&2
 }
 
-#-- Because Git submodule commands cannot operate without a work tree, they must
-#-- be run from within $HOME (assuming this is the root of your dotfiles)
-cd "$HOME"
-
-echo "Init submodules"
-~/.local/bin/yadm submodule update --recursive --init
+die() {
+    error "$*"
+    exit 1
+}
 
 case "$(uname -s)" in
     Darwin)
+        info "Detected macOS"
         source "$SCRIPT_DIR/bootstrap.d/macos.sh"
         ;;
 
     Linux)
         source /etc/os-release
+
+        info "Detected Linux: ${PRETTY_NAME:-$ID}"
 
         case "$ID" in
             debian|ubuntu|linuxmint|pop)
